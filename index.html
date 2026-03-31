@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Luma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4AF37;--gold-dark:#C8970A;--gold-light:#E8C44A;
+  --cream:#F5ECD7;--bg:#07101E;--bg2:#0A1520;
+  --sub:#7A8CA0;--teal:#10B981;--blue:#0EA5E9;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--cream);overflow-x:hidden;min-height:100vh}
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.6}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:18px 52px;display:flex;align-items:center;justify-content:center;
+  background:rgba(7,16,30,0.88);border-bottom:1px solid rgba(212,175,55,0.10);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:default}
+.nav-logo img{height:32px;width:32px;object-fit:contain}
+.nav-logo span{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--cream);letter-spacing:3px}
+
+/* PAGE HERO */
+.page-hero{
+  position:relative;z-index:1;
+  padding:140px 6vw 72px;text-align:center;
+  border-bottom:1px solid rgba(212,175,55,0.08);
+}
+.page-hero::before{
+  content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:500px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,0.08) 0%,transparent 65%);
+  filter:blur(50px);pointer-events:none;
+}
+.page-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(212,175,55,0.22);border-radius:100px;
+  padding:6px 16px;margin-bottom:24px;
+  animation:fadeUp 0.8s ease both;
+}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:300;line-height:1.05;color:var(--cream);animation:fadeUp 0.8s 0.08s ease both}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-meta{margin-top:16px;font-size:13px;font-weight:300;color:var(--sub);letter-spacing:0.3px;animation:fadeUp 0.8s 0.16s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* LAYOUT */
+.content-wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:80px 6vw 120px}
+
+/* TOC */
+.toc{background:rgba(255,255,255,0.025);border:1px solid rgba(212,175,55,0.12);border-radius:20px;padding:28px 32px;margin-bottom:64px}
+.toc-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.toc-list a{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:13.5px;font-weight:300;color:rgba(245,236,215,0.60);transition:color 0.2s;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.06)}
+.toc-list li:last-child a{border-bottom:none}
+.toc-list a:hover{color:var(--cream)}
+.toc-num{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;color:rgba(212,175,55,0.40);width:20px;flex-shrink:0}
+
+/* SECTIONS */
+.policy-section{margin-bottom:56px;padding-bottom:56px;border-bottom:1px solid rgba(212,175,55,0.07)}
+.policy-section:last-of-type{border-bottom:none}
+.section-num{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:300;letter-spacing:2px;color:rgba(212,175,55,0.45);text-transform:uppercase;margin-bottom:8px;display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--cream);margin-bottom:20px;line-height:1.1}
+.section-title em{font-style:italic;color:var(--gold)}
+.policy-p{font-size:15px;font-weight:300;line-height:1.85;color:rgba(245,236,215,0.65);margin-bottom:14px}
+.policy-p:last-child{margin-bottom:0}
+.strong{color:rgba(245,236,215,0.90);font-weight:400}
+
+/* LIST */
+.policy-list{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:10px}
+.policy-list li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;font-weight:300;line-height:1.75;color:rgba(245,236,215,0.65)}
+.policy-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:0.55;flex-shrink:0;margin-top:9px}
+
+/* CALLOUT BOXES */
+.box-green{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.18);border-left:3px solid rgba(16,185,129,0.55);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0;font-size:14px;font-weight:300;line-height:1.75;color:rgba(245,236,215,0.75)}
+.box-amber{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.18);border-left:3px solid rgba(245,158,11,0.50);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0;font-size:14px;font-weight:300;line-height:1.75;color:rgba(254,243,199,0.80)}
+.box-red{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.16);border-left:3px solid rgba(239,68,68,0.45);border-radius:0 14px 14px 0;padding:18px 22px;margin:20px 0;font-size:14px;font-weight:300;line-height:1.75;color:rgba(255,204,204,0.80)}
+
+/* INLINE LINK */
+.inline-link{color:var(--blue);font-weight:300;font-size:inherit;text-decoration:none;border-bottom:1px solid rgba(14,165,233,0.25);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.inline-link:hover{color:rgba(14,165,233,0.85);border-color:rgba(14,165,233,0.55)}
+
+/* EMAIL */
+.email-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:300;font-size:14px;text-decoration:none;border-bottom:1px solid rgba(14,165,233,0.25);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.email-link:hover{color:rgba(14,165,233,0.85);border-color:rgba(14,165,233,0.55)}
+
+/* CONTACT CARD */
+.contact-card{background:rgba(255,255,255,0.025);border:1px solid rgba(212,175,55,0.14);border-radius:20px;padding:32px;margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.contact-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);margin-bottom:6px}
+.contact-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--cream)}
+.contact-sub{font-size:13px;font-weight:300;color:var(--sub);margin-top:3px}
+.btn-email{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));border-radius:100px;color:#1A1200;font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap;transition:transform 0.2s,box-shadow 0.3s;box-shadow:0 3px 18px rgba(200,151,10,0.28)}
+.btn-email:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(200,151,10,0.42)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:36px 52px;border-top:1px solid rgba(212,175,55,0.08);background:var(--bg);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.foot-brand{display:flex;align-items:center;gap:8px}
+.foot-brand img{height:24px;width:24px;object-fit:contain;opacity:0.65}
+.foot-brand span{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:400;letter-spacing:2.5px;color:var(--sub)}
+.foot-links{display:flex;gap:24px;list-style:none}
+.foot-links a{font-size:11px;font-weight:300;letter-spacing:0.8px;color:rgba(138,155,176,0.50);text-decoration:none;transition:color 0.2s}
+.foot-links a:hover{color:var(--cream)}
+.foot-copy{font-size:10px;font-weight:300;color:rgba(138,155,176,0.28);letter-spacing:0.5px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:0.06s}.d2{transition-delay:0.12s}.d3{transition-delay:0.18s}
+
+@media(max-width:640px){
+  nav{padding:16px 20px}
+  .page-hero{padding:120px 24px 56px}
+  .content-wrap{padding:56px 24px 80px}
+  .toc{padding:22px 20px}
+  .contact-card{flex-direction:column;align-items:flex-start}
+  footer{padding:28px 20px;flex-direction:column;align-items:center;text-align:center}
+}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <div class="nav-logo">
+    <img src="LumaLogo.png" alt="Luma">
+    <span>LUMA</span>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-eyebrow">Legal · Terms</div>
+  <h1 class="page-title">Terms of <em>Use</em></h1>
+  <p class="page-meta">Last updated: October 6, 2025 &nbsp;·&nbsp; NextByte Studios</p>
+</div>
+
+<div class="content-wrap">
+
+  <!-- TOC -->
+  <div class="toc reveal">
+    <span class="toc-label">Contents</span>
+    <ul class="toc-list">
+      <li><a href="#s1"><span class="toc-num">01</span>Acceptance of Terms</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span>User Accounts</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span>Cloud Storage &amp; Synchronization</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span>Account Deletion</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span>Purpose of the App</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span>User Responsibilities</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span>Intellectual Property</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span>Data &amp; Privacy</a></li>
+      <li><a href="#s9"><span class="toc-num">09</span>Limitation of Liability</a></li>
+      <li><a href="#s10"><span class="toc-num">10</span>Termination</a></li>
+      <li><a href="#s11"><span class="toc-num">11</span>Updates to Terms</a></li>
+      <li><a href="#s12"><span class="toc-num">12</span>Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- INTRO -->
+  <div class="policy-section reveal">
+    <p class="policy-p">Welcome to <span class="strong">Luma</span> — your daily wellbeing companion. By downloading, accessing, or using this app, you agree to these Terms of Use. Please read them carefully before continuing.</p>
+    <div class="box-green">By using Luma, you confirm you have read and agree to these terms.</div>
+  </div>
+
+  <!-- S1 -->
+  <div class="policy-section reveal" id="s1">
+    <span class="section-num">Section 01</span>
+    <div class="section-title">Acceptance of <em>Terms</em></div>
+    <p class="policy-p">By using Luma, you confirm that you are at least 13 years old (or the minimum legal age in your country) and that you agree to comply with these terms.</p>
+    <p class="policy-p">If you do not agree, please do not use the app.</p>
+  </div>
+
+  <!-- S2 -->
+  <div class="policy-section reveal" id="s2">
+    <span class="section-num">Section 02</span>
+    <div class="section-title">User <em>Accounts</em></div>
+    <p class="policy-p">Luma allows you to create an account using your email address, first name, and last name. You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account.</p>
+    <p class="policy-p">You agree to provide accurate and truthful information when registering. We reserve the right to suspend or terminate accounts that contain false or misleading information.</p>
+  </div>
+
+  <!-- S3 -->
+  <div class="policy-section reveal" id="s3">
+    <span class="section-num">Section 03</span>
+    <div class="section-title">Cloud Storage <em>&amp; Synchronization</em></div>
+    <p class="policy-p">When you create an account, certain data — including account information and synced journal content — may be securely stored using trusted cloud infrastructure providers. This enables authentication, account functionality, and synchronization across devices.</p>
+  </div>
+
+  <!-- S4 -->
+  <div class="policy-section reveal" id="s4">
+    <span class="section-num">Section 04</span>
+    <div class="section-title">Account <em>Deletion</em></div>
+    <p class="policy-p">You may request deletion of your account and associated cloud-stored data at any time by contacting us directly.</p>
+    <p class="policy-p">Upon verified request, your account and related personal data will be permanently removed.</p>
+    <div class="box-green">
+      To request account deletion, contact: <a href="mailto:nextbytestudioscontact@gmail.com" class="email-link">nextbytestudioscontact@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="policy-section reveal" id="s5">
+    <span class="section-num">Section 05</span>
+    <div class="section-title">Purpose of <em>the App</em></div>
+    <p class="policy-p">Luma is designed to support emotional awareness, mindfulness, and self-reflection. It is <span class="strong">not</span> a medical, psychological, or therapeutic service, nor does it replace professional care.</p>
+    <div class="box-amber">Always seek advice from qualified health professionals for medical or mental health concerns.</div>
+  </div>
+
+  <!-- S6 -->
+  <div class="policy-section reveal" id="s6">
+    <span class="section-num">Section 06</span>
+    <div class="section-title">User <em>Responsibilities</em></div>
+    <p class="policy-p">When using Luma, you agree to:</p>
+    <ul class="policy-list">
+      <li>Use Luma only for personal and non-commercial purposes.</li>
+      <li>Not misuse the app, attempt to access other users' data, or interfere with its functionality.</li>
+      <li>Keep your login credentials secure and confidential.</li>
+    </ul>
+  </div>
+
+  <!-- S7 -->
+  <div class="policy-section reveal" id="s7">
+    <span class="section-num">Section 07</span>
+    <div class="section-title">Intellectual <em>Property</em></div>
+    <p class="policy-p">All app content, design, branding, and materials — including the Luma name, logo, graphics, and text — are owned by <span class="strong">NextByte Studios</span> or licensed to it.</p>
+    <p class="policy-p">You may not copy, modify, distribute, or reverse-engineer any part of the app without written permission.</p>
+  </div>
+
+  <!-- S8 -->
+  <div class="policy-section reveal" id="s8">
+    <span class="section-num">Section 08</span>
+    <div class="section-title">Data <em>&amp; Privacy</em></div>
+    <p class="policy-p">Your privacy is important to us. Please review our <a href="privacy.html" class="inline-link">Privacy Policy</a> to understand how we collect, use, and protect your information.</p>
+  </div>
+
+  <!-- S9 -->
+  <div class="policy-section reveal" id="s9">
+    <span class="section-num">Section 09</span>
+    <div class="section-title">Limitation of <em>Liability</em></div>
+    <p class="policy-p">Luma is provided "as is," without warranties of any kind. To the fullest extent permitted by law, NextByte Studios shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of or inability to use the app.</p>
+  </div>
+
+  <!-- S10 -->
+  <div class="policy-section reveal" id="s10">
+    <span class="section-num">Section 10</span>
+    <div class="section-title"><em>Termination</em></div>
+    <p class="policy-p">We reserve the right to suspend or terminate access to the app at any time if you violate these terms or engage in misuse.</p>
+  </div>
+
+  <!-- S11 -->
+  <div class="policy-section reveal" id="s11">
+    <span class="section-num">Section 11</span>
+    <div class="section-title">Updates to <em>Terms</em></div>
+    <p class="policy-p">We may update these Terms of Use from time to time. Any significant changes will be reflected on this page with an updated revision date.</p>
+    <p class="policy-p">Continued use of the app after changes are published constitutes acceptance of the revised Terms.</p>
+  </div>
+
+  <!-- S12 -->
+  <div class="policy-section reveal" id="s12">
+    <span class="section-num">Section 12</span>
+    <div class="section-title"><em>Contact</em></div>
+    <p class="policy-p">If you have questions about these Terms, please reach out to us directly.</p>
+    <div class="contact-card">
+      <div>
+        <div class="contact-label">Get in touch</div>
+        <div class="contact-name">NextByte Studios</div>
+        <div class="contact-sub">nextbytestudioscontact@gmail.com</div>
+      </div>
+      <a href="mailto:nextbytestudioscontact@gmail.com" class="btn-email">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Send email
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-brand">
+    <img src="LumaLogo.png" alt="Luma">
+    <span>LUMA</span>
+  </div>
+  <ul class="foot-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="mailto:nextbytestudioscontact@gmail.com">Contact</a></li>
+    <li><a href="https://play.google.com/store/apps/details?id=com.nextbytestudios.luma" target="_blank">Google Play</a></li>
+  </ul>
+  <span class="foot-copy">© 2025 NextByte Studios. All rights reserved.</span>
+</footer>
+
+<script>
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+const pts = [];
+function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+class P {
+  constructor(){ this.reset(true) }
+  reset(init){
+    this.x=Math.random()*W; this.y=init?Math.random()*H:0;
+    this.r=Math.random()*1.0+0.3; this.a=Math.random()*0.20+0.04;
+    this.vx=(Math.random()-0.5)*0.12; this.vy=(Math.random()-0.5)*0.12;
+    this.gold=Math.random()>0.55;
+  }
+  tick(){ this.x+=this.vx; this.y+=this.vy; if(this.x<-2||this.x>W+2||this.y<-2||this.y>H+2) this.reset(false); }
+  draw(){
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=this.gold?`rgba(212,175,55,${this.a})`:`rgba(14,165,233,${this.a*0.5})`;
+    ctx.fill();
+  }
+}
+for(let i=0;i<90;i++) pts.push(new P());
+(function loop(){ ctx.clearRect(0,0,W,H); pts.forEach(p=>{p.tick();p.draw();}); requestAnimationFrame(loop); })();
+
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+},{ threshold:0.10 });
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
